@@ -99,7 +99,7 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   });
 });
 
-/*
+
 describe('Order the movies by duration - orderByDuration', function () {
   it('Defines orderByDuration', function () {
     expect(typeof orderByDuration).toBe('function');
@@ -121,7 +121,7 @@ describe('Order the movies by duration - orderByDuration', function () {
     expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
   });
 });
-*/
+
 describe('Get how many movies - howManyMovies', function () {
   it('Defines howManyMovies', function () {
     expect(typeof howManyMovies).toBe('function');
