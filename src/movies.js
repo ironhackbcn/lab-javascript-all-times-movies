@@ -11,7 +11,7 @@ function ratesAverage(movies){
   });
   let sumRates = ratesArray.reduce(function(a, b) { return a + b; });
   
-  return sumRates / movies.length;
+  return Math.round((sumRates / movies.length)*100)/100;
 }
 
 //console.log(ratesAverage(movies2));
