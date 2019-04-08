@@ -4,7 +4,6 @@
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage (array) {
-
   return array.reduce( (accum, element) => 
     accum + element.rate, 0) / array.length;
   
@@ -26,16 +25,12 @@ function dramaMoviesRate (array) {
 
 // Order by time duration, in growing order
 function orderByDuration (array) {
-  return array.sort((a, b) => {
-   if (a < b){
-    return -1;
-   }
-   if (a > b){
-    return 1;
-   }
-    return 0;
-   });
-  }
+  array.sort((a, b) => {
+      return a.duration - b.duration;
+  });
+  return array
+  //console.log(newArray)
+}
 
 // How many movies did STEVEN SPIELBERG
 let counter = 0;
