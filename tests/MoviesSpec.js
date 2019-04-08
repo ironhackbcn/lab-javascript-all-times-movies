@@ -220,7 +220,7 @@ describe('Order alphabetically - orderAlphabetically', function () {
   });
 });
 
-describe('Best year average - bestYearAvg', function () {
+xdescribe('Best year average - bestYearAvg', function () {
   it('Defines bestYearAvg', function () {
     expect(typeof bestYearAvg).toBe('function');
   });
