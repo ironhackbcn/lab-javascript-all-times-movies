@@ -3,6 +3,13 @@
 
 
 // Get the average of all rates with 2 decimals 
+function ratesAverage (movieArr) {
+  const ratesTotal = movieArr.reduce(function(total,currenRate){
+    return total + currenRate.rate;
+  },0);
+  return parseFloat((ratesTotal/movieArr.length).toFixed(2));
+}
+console.log(ratesAverage(movies))
 
 
 // Get the average of Drama Movies
