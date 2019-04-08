@@ -121,7 +121,7 @@ describe('Order the movies by duration - orderByDuration', function () {
     expect(orderByDuration([{ title: 'abc', duration: 180 }, { title: 'bac', duration: 90 }, { title: 'aab', duration: 90 }])).toEqual([{ title: 'aab', duration: 90 }, { title: 'bac', duration: 90 }, { title: 'abc', duration: 180 }]);
   });
 });
-
+*/
 describe('Get how many movies - howManyMovies', function () {
   it('Defines howManyMovies', function () {
     expect(typeof howManyMovies).toBe('function');
@@ -182,7 +182,7 @@ describe('Get how many movies - howManyMovies', function () {
     expect(howManyMovies(movies)).toBe('Steven Spielberg directed 4 drama movies!');
   });
 });
-
+/*
 describe('Order alphabetically - orderAlphabetically', function () {
   it('Defines orderAlphabetically', function () {
     expect(typeof orderAlphabetically).toBe('function');
