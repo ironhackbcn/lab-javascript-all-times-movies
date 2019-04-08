@@ -182,7 +182,7 @@ describe('Get how many movies - howManyMovies', function () {
     expect(howManyMovies(movies)).toBe('Steven Spielberg directed 4 drama movies!');
   });
 });
-/*
+
 describe('Order alphabetically - orderAlphabetically', function () {
   it('Defines orderAlphabetically', function () {
     expect(typeof orderAlphabetically).toBe('function');
@@ -220,7 +220,7 @@ describe('Order alphabetically - orderAlphabetically', function () {
     expect(orderAlphabetically(moviesArr)).toEqual(['aaa', 'aab', 'acb', 'acs', 'afb', 'agb', 'anc', 'apo', 'bab', 'bbb', 'bbt', 'bca', 'bvc', 'ccc', 'cdf', 'era', 'ert', 'frt', 'gda', 'gha']);
   });
 });
-
+/*
 describe('Best year average - bestYearAvg', function () {
   it('Defines bestYearAvg', function () {
     expect(typeof bestYearAvg).toBe('function');

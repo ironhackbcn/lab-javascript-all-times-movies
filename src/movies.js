@@ -56,12 +56,24 @@ function howManyMovies(movies){
         return 1;
       }
     });
-    
+
     return `Steven Spielberg directed ${dramaSpielbergArray.length} drama movies!`;
   }
 }
 
+
 // Order by title and print the first 20 titles
+function orderAlphabetically(movies){
+
+ let titleArray = [];
+ movies.forEach( function(element){
+   titleArray.push(element.title);
+  });
+  
+  titleArray.sort();
+
+  return titleArray.slice(0,20);
+}
 
 
 // Best yearly rate average
