@@ -3,6 +3,18 @@
 
 
 // Get the average of all rates with 2 decimals 
+function ratesAverage(movies){
+
+  let ratesArray = [];
+  movies.forEach( function (element) {
+    ratesArray.push(element.rate);
+  });
+  let sumRates = ratesArray.reduce(function(a, b) { return a + b; });
+  
+  return sumRates / movies.length;
+}
+
+//console.log(ratesAverage(movies2));
 
 
 // Get the average of Drama Movies
@@ -18,3 +30,6 @@
 
 
 // Best yearly rate average
+
+
+
