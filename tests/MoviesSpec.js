@@ -64,7 +64,7 @@ describe('Get the average rate - ratesAverage', function () {
     expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
   });
 });
-/*
+
 describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   it('Defines dramaMoviesRate', function () {
     expect(typeof dramaMoviesRate).toBe('function');
@@ -99,6 +99,7 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   });
 });
 
+/*
 describe('Order the movies by duration - orderByDuration', function () {
   it('Defines orderByDuration', function () {
     expect(typeof orderByDuration).toBe('function');
