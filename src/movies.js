@@ -1,5 +1,25 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+function turnHoursToMinutes(movies){
+
+  let moviesInMinutes = JSON.parse(JSON.stringify(movies)); //Not cool way :(
+  
+  for(let i = 0 ; i < movies.length ; i++){
+
+    let stringDuration = movies[i].duration;
+    if(stringDuration.indexOf('h') === -1){
+      stringDuration = `0h  ${stringDuration}`;
+    }
+    let hoursDivision = stringDuration.split('h');
+    let minutesDivisionWithSpace = hoursDivision[1].split('min');
+    let minutesDivision = minutesDivisionWithSpace[0].substring(1);
+    let minutes = hoursDivision[0]*60 + minutesDivision*1;
+    moviesInMinutes.push(movies[i]);
+    moviesInMinutes[i].duration = minutes;
+  }
+
+  return moviesInMinutes;
+}
 
 
 // Get the average of all rates with 2 decimals 

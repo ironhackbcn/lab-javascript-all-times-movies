@@ -1,6 +1,6 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-/*
+
 describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -42,7 +42,7 @@ describe('Turn duration of the movies - turnHoursToMinutes', function () {
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
   });
 });
-*/
+
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
     expect(typeof ratesAverage).toBe('function');
