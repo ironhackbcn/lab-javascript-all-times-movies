@@ -16,11 +16,12 @@ function dramaMoviesRate (array) {
   array.forEach( (element) => {
     if (element.genre.includes('Drama')){
       drama.push(element);
-    } else {
+     } 
+    });
+    if (drama.length === 0) {
       return undefined;
-    }
- });
-   return parseFloat(ratesAverage(drama).toFixed(2));
+    };
+  return parseFloat(ratesAverage(drama).toFixed(2));
 }
 
 // Order by time duration, in growing order
@@ -48,7 +49,7 @@ function howManyMovies (drama) {
       return undefined;
     }
    });
-   return spielbergMovies.join() + counter;
+   return `Steven Spielberg directed ${this.counter} drama movies!`;
 }
 
 
@@ -58,23 +59,13 @@ function orderAlphabetically (array) {
     if (array.length < 20) {
       return array;
     } else {
-      return array[...element[21]];
+      for (let i = 0; i < 21; i++) {
+        return array[i];
+      }
     }
   });
-  let sortedArray = movieTitle.sort( (a, b) => {
-     if (a.length > b.length){
-      return -1;
-    }
-
-     if (a.length < b.length){
-      return 1;
-    }
-
-     return 0;
-    });
-     return sortedArray;
-  }
-  
+  return movieTitle.sort();
+}
 
 
 // Best yearly rate average
