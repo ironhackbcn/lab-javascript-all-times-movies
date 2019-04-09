@@ -1,14 +1,16 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
 function turnHoursToMinutes(array) {
-    const newArray = array.map((element) => {
+    let newArray = JSON.parse(JSON.stringify(array))
+    newArray.forEach((element) => {
         //really ugly method
-        element.duration = (element.duration.split('h')[0] * 60) + (element.duration.split('h')[1].split('min')[0]*1)
+        element.duration = (element.duration.split('h')[0] * 60) + (element.duration.split('h')[1].split('min')[0] * 1)
         return element
     })
-    return newArray
+    console.log(array)
+    console.log(newArray)
 }
-//console.log(turnHoursToMinutes(movies))
+turnHoursToMinutes(movies)
 
 // Get the average of all rates with 2 decimals 
 function ratesAverage (array) {
