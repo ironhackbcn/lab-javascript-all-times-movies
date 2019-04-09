@@ -5,9 +5,12 @@
 ////////////// Turn duration of the movies from hours to minutes ////////////
 
 function turnHoursToMinutes(movieArray){
-movieArray.forEach(function(movie){
-  var hours = movie.duration[0] * 60;
-});
+let hours = 0;
+let timeInMinutes = movieArray.map(function(movie) {
+  for(var i = 0; i < movieArray.length; i++) {
+     hours = Number(movie.duration.charAt(0)) * 60;
+  }
+})
 return hours;
 }
 
