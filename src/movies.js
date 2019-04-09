@@ -3,6 +3,22 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes
 
+var turnHoursToMinutes = function(array) {
+  var newArray = array.map((element, i) => {
+    if (!element.duration) {
+      return;
+    }
+    var min = element.duration.split("h");
+    var hours = min[0] * 60;
+    var minutes = min[1].split("min");
+
+    totalTimeMin = parseInt(hours) + parseInt(minutes);
+    console.log(totalTimeMin);
+    return totalTimeMin;
+  });
+  return newArray;
+};
+
 // Get the average of all rates with 2 decimals
 var ratesAverage = function(array) {
   const rate =
@@ -57,10 +73,9 @@ var howManyMovies = function(array) {
 };
 // Order by title and print the first 20 titles
 var orderAlphabetically = function(array) {
-
-  const movies_20 = array.splice(0,20);
+  const movies_20 = array.splice(0, 20);
   var titles = [];
-  movies_20.forEach((element,i) => {
+  movies_20.forEach((element, i) => {
     titles.push(element.title);
   });
 
