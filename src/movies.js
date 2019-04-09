@@ -24,10 +24,11 @@ function dramaMoviesRate (array) {
       drama.push(element);
      } 
     });
-    if (drama.length === 0) {
+    if (drama.length === 0 || isNaN(ratesAverage(drama))) {
       return undefined;
-    };
+    } else {
   return parseFloat(ratesAverage(drama).toFixed(2));
+  }
 }
 
 // Order by time duration, in growing order
