@@ -4,7 +4,7 @@ function turnHoursToMinutes (array) {
   let minutes1 = array.duration.split('h') * 60;
   let minutes2 = array.duration.split('min') % minutes1;
   let newMinutes = minutes2 + minutes1;
-  let newArray = array.forEach( (element) => {
+  let newArray = array.filter( (element) => {
     element.duration = newMinutes;
   });
   return newArray;
@@ -17,6 +17,7 @@ function ratesAverage (array) {
  };
 
 // Get the average of Drama Movies
+
 function dramaMoviesRate (array) {
   let drama = [];
   array.forEach( (element) => {
@@ -40,34 +41,34 @@ function orderByDuration (array) {
 }
 
 // How many movies did STEVEN SPIELBERG
-let counter = 0;
-function howManyMovies (drama) {
-  let spielbergMovies = [];
-  drama.filter( (element) => {
-    if (element.director === 'Steven Spielberg') {
-    spielbergMovies.push(element);
+function howManyMovies (array) {
+  if (array.length === 0) {
+    return undefined;
+  }
+  let counter = 0;
+  array.forEach( (element) => {
+    if ((element.director === 'Steven Spielberg') && (element.genre.indexOf('Drama') !== 0)) {
     counter++;
-    } else {
-      return undefined;
     }
    });
-   return `Steven Spielberg directed ${this.counter} drama movies!`;
+   return `Steven Spielberg directed ${counter} drama movies!`;
 }
 
 
 // Order by title and print the first 20 titles
 function orderAlphabetically (array) {
-  let movieTitle = array.title.split( () => {
-    if (array.length < 20) {
-      return array;
-    } else {
-      for (let i = 0; i < 21; i++) {
-        return array[i];
-      }
+  array.sort( (objA, objB) => {
+    if (objA.title < objB.title) {
+      return -1;
+    } else if (objA.title > objB.title) {
+       return 1;
     }
-  });
-  return movieTitle.sort();
+  })
+  let top20 = array.splice (0, 20);
+  let result = top20.reduce ( (accu, ele) => {
+    accu.push(ele.title);
+    return accu;
+  }, [] );
+  return result;
 }
-
-
 // Best yearly rate average
