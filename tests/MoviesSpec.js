@@ -1,6 +1,6 @@
 /* eslint no-undef: "off" */
 /* eslint jasmine/no-spec-dupes: "off" */
-
+/*
 describe('Turn duration of the movies - turnHoursToMinutes', function () {
   it('Defines turnHoursToMinutes', function () {
     expect(typeof turnHoursToMinutes).toBe('function');
@@ -42,6 +42,7 @@ describe('Turn duration of the movies - turnHoursToMinutes', function () {
     expect(turnHoursToMinutes(movieTry)[0].duration).toBe(54);
   });
 });
+*/
 
 describe('Get the average rate - ratesAverage', function () {
   it('Defines ratesAverage', function () {
@@ -64,6 +65,7 @@ describe('Get the average rate - ratesAverage', function () {
     expect(ratesAverage([{ rate: 8 }, { rate: 9 }, { rate: 9 }])).toBeCloseTo(8.67, 2);
   });
 });
+
 
 describe('Average rate of Drama Movies - dramaMoviesRate', function () {
   it('Defines dramaMoviesRate', function () {
@@ -98,6 +100,8 @@ describe('Average rate of Drama Movies - dramaMoviesRate', function () {
     expect(dramaMoviesRate([{ genre: ['Action'], rate: 8 }, { genre: ['Romance'], rate: 9 }, { genre: ['Sci-Fi'], rate: 7 }])).toBe(undefined);
   });
 });
+
+/*
 
 describe('Order the movies by duration - orderByDuration', function () {
   it('Defines orderByDuration', function () {
@@ -243,3 +247,4 @@ describe('Best year average - bestYearAvg', function () {
     expect(bestYearAvg(newMoviesArr)).toEqual('The best year was 1978 with an average rate of 8.5');
   });
 });
+*/
