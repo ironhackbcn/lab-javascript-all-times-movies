@@ -21,7 +21,13 @@
 
 function turnHoursToMinutes(array) {
   const newArray = array.map(function(element){
- //don`t know if i can split string by 2 parameters?
+    var hours = element.duration.split("h")
+    var htm = parseInt(hours[0])*60;
+    var min1 = element.duration.split(" ");
+    var min2 = min1[1].split("min");
+    var minutes = parseInt(min2[0]);
+    element.duration = htm+minutes;
+    hours (element.duration.split(" ")[1].replace("min", ""));
   })
   return newArray;
 }
