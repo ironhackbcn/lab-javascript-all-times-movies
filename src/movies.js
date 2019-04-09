@@ -27,7 +27,7 @@ function turnHoursToMinutes(array) {
     var min2 = min1[1].split("min");
     var minutes = parseInt(min2[0]);
     element.duration = htm+minutes;
-    hours (element.duration.split(" ")[1].replace("min", ""));
+  
   })
   return newArray;
 }
