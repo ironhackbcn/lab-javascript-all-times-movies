@@ -21,17 +21,16 @@
 
 function turnHoursToMinutes(array) {
   const newArray = array.map(function(element){
-    var hours = element.duration.split("h")
+    var hours = array[element].duration.split("h")
     var htm = parseInt(hours[0])*60;
-    var min1 = element.duration.split(" ");
+    var min1 = array[element].duration.split(" ");
     var min2 = min1[1].split("min");
     var minutes = parseInt(min2[0]);
-    element.duration = htm+minutes;
+    array[element].duration = htm+minutes;
   
-  })
+  });
   return newArray;
 }
-
 
 function ratesAverage (array){
   
