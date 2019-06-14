@@ -4,9 +4,26 @@
 
 // Get the average of all rates with 2 decimals 
 
+function ratesAverage(array){
+
+  const sum = rateArray.reduce(function (acc, obj){
+    return acc + obj.rate ;
+  },0);
+  
+  let decimalResult = sum/array.length;
+  return parseFloat(decimalResult.toFixed(2));
+}
 
 // Get the average of Drama Movies
 
+function dramaMoviesRate(array){
+
+  var dramaMovies = array.filter(function (movie) {
+    //return movie.genre.Includes("Drama");
+  });
+
+  ratesAverage(dramaMovies)
+}
 
 // Order by time duration, in growing order
 
