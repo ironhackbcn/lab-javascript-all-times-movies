@@ -2026,25 +2026,97 @@ function sumMoviesRates (array) {
   var ratesSum = array.reduce(function(accumulator, input) {
     return accumulator += parseFloat(input.rate);
     },0);
-  console.log(parseFloat(ratesSum/movies.length).toFixed(2));
 
-  return ratesSum;
+  return parseFloat(ratesSum/movies.length).toFixed(2);
 }
   
-sumMoviesRates(movies)
+console.log(sumMoviesRates(movies));
 
-function dramaMovies (array) {
+//------------------------
+
+function getDramaMovies (array) {
   var moviesDrama = array.filter(function(input) {
     return input.genre.includes('Drama');
     });
-    console.log(moviesDrama);
   return moviesDrama;
 }
   
-function dramaMoviesRate(dramaMovies(movies)) {
-
+function dramaMoviesRate(array) {
+  var dramaMovies = getDramaMovies(array)
+  return sumMoviesRates(dramaMovies)
 }
 
+console.log(dramaMoviesRate(movies));
+
+//-----------------------------
+
+
+function howManyMovies(array) {
+  return array.filter(function(input) {
+    return input.genre.includes('Drama') && input.director === 'Steven Spielberg';
+    });
+}
+
+console.log(howManyMovies(movies));
+
+//-----------------------------
+
+function orderAlphabetically(array) {
+  array.sort(function (a, b) {
+    if (a.title > b.title) {
+      return 1;
+    }
+    if (a.title < b.title) {
+      return -1;
+    }
+    return 0;
+  })
+  return array.slice(0,20);
+}
+
+console.log(orderAlphabetically(movies));
+
+//-----------------------------
+
+function turnHoursToMinutes(array) {
+  var moviesWithTimeInMinutes = array.map(movie => {
+    var minutes = getDurationInMinutes(movie.duration)
+    return {
+      title: movie.title,
+      year: movie.year,
+      director: movie.director,
+      duration: minutes,
+      genre: movie.genre,
+      rate: movie.rate
+    }
+  })
+
+  return moviesWithTimeInMinutes;
+}
+
+console.log(turnHoursToMinutes(movies));
+
+function getDurationInMinutes(duration) {
+  var positionH = duration.indexOf('h')
+  var positionM = duration.indexOf('m')
+  var hours = 0
+  var minutes = 0
+
+  if (positionH !== -1) {
+    hours = duration.substring(0, positionH)
+  }
+  if (positionM !== -1) {
+    if (positionH !== -1) {
+      minutes = duration.substring(positionH+2, positionM) 
+    } else {
+      minutes = duration.substring(0, positionM) 
+    }
+  }
+
+  return parseInt(hours) * 60 + parseInt(minutes)
+}
+
+//-----------------------------
 
 /* 
 
