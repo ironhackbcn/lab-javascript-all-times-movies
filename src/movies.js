@@ -4,7 +4,13 @@
 function turnHoursToMinutes(movies) {
   var formatTime = movies.map(function(movie) {
     var durationArray = movie.duration.replace(/[hmin]/g, '').split(" ");
-    return parseInt(durationArray[0]) * 60 + parseInt(durationArray[1]);
+    // Create a copy of the object (otherwise, movie.duration change the original object property)
+    var obj = Object.assign({}, movie, {
+      // In case the array has only one element, it means it's minutes, or hour. 
+      duration: (durationArray.length === 1) ? (durationArray[0].length === 1) ? parseInt(durationArray[0]) * 60 : parseInt(durationArray[0])
+                                             : (parseInt(durationArray[0]) * 60 + parseInt(durationArray[1])),
+    });
+    return obj;
   })
   return formatTime;
 }
@@ -36,9 +42,33 @@ function dramaMoviesRate(movies) {
   return ratesAverage(filterMovies);
 }
 
-//dramaMoviesRate(movies);
 // Order by time duration, in growing order
 
+function orderByDuration(movies) {
+  //var arrayTimeFormat = turnHoursToMinutes(movies);
+  var sortedArray = movies.sort(function(a,b) {
+    // In case the same duration, order by title
+    if(a.duration===b.duration){
+      var res = (a.title<b.title) ? -1 : 1;
+      return res;
+    }
+    if(a.duration<b.duration) {
+      return -1;
+    }
+    if(a.duration>b.duration) {
+      return 1;
+    }
+    return 0;
+  }) 
+  var durationArray = sortedArray.map(function(movie) {
+    // Chack if movie has the title property (because of the weird error of Jasmine)
+    var obj = (movie.hasOwnProperty('title')) ? {title: movie.title, duration: movie.duration} : {duration: movie.duration} 
+    return obj
+  })
+  return durationArray;
+}
+
+console.log(orderByDuration(movies));
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(movies) {
@@ -58,8 +88,6 @@ function howManyMovies(movies) {
   return `Steven Spielberg directed ${spielbergMovies.length} drama movies!`;
 };
 
-//howManyMovies(movies);
-
 // Order by title and print the first 20 titles
 function orderAlphabetically(movies) {
   var sortedArray = movies.sort(function(a,b) {
@@ -77,7 +105,34 @@ function orderAlphabetically(movies) {
   return titlesArray.splice(0, 20);
 }
 
-//orderAlphabetically(movies);
 
 // Best yearly rate average
 
+function bestYearAvg(movies) {
+  if(movies.length === 0){
+    return undefined;
+  }
+  // Create an array of years
+  var years = movies.reduce(function(acc, current) {
+    if(!acc.includes(current.year)){
+      acc.push(current.year);
+    }
+    return acc;
+  }, [])
+  // create an array with object {year, rateAverage}
+  var yearsArray = years.map(function(year) {
+    var yearArray = movies.filter(function(movie) {
+      return movie.year === year;
+    })
+    return {year: yearArray[0].year, rateAvg: ratesAverage(yearArray)};
+  })
+  // Get the best rate average's year
+  var orderedRate = yearsArray.sort(function(a,b) {
+    if(b.rateAvg - a.rateAvg === 0) {
+      return a.year - b.year;
+    }
+    return b.rateAvg - a.rateAvg;
+  })
+
+  return `The best year was ${orderedRate[0].year} with an average rate of ${orderedRate[0].rateAvg}`
+}
