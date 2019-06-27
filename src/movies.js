@@ -55,4 +55,23 @@ function orderAlphabetically (array) {
   counter++
 }*/
 
+function orderAlphabetically(arr) {
+  arr.sort(function (a, b) {
+    if(a.title < b.title){
+      return -1;
+    }else{
+      return 1;
+    }
+  });
+  var top20Movies = [];
+  var limit = 20;
+  if (arr.length < 20) {
+    limit = arr.length;
+  }
+  for (var i = 0; i < limit; i++) {
+    top20Movies.push(arr[i].title);
+  }
+  return top20Movies;
+}
+
 // Best yearly rate average
