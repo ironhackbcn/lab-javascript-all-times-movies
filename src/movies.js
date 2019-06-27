@@ -3,7 +3,7 @@
 
 
 function turnHoursToMinutesString(string) {
-  if(typeof string === 'number') {
+  if (typeof string === 'number') {
     return string;
   }
   var durationInMinutes = '';
@@ -27,8 +27,8 @@ function turnHoursToMinutesString(string) {
   } else {
     durationInMinutes = parseInt(hours.replace(/\D/g, '')) * 60
   }
-    console.log('minute',durationInMinutes);
-    return durationInMinutes;
+  console.log('minute', durationInMinutes);
+  return durationInMinutes;
 }
 
 function turnHoursToMinutes(array) {
@@ -78,7 +78,7 @@ function orderByDuration(array) {
   turnHoursToMinutes(newArray);
   newArray.sort(function (obj1, obj2) {
     if (obj1.duration - obj2.duration === 0) {
-      
+
     }
     return obj1.duration - obj2.duration;
   })
@@ -91,10 +91,10 @@ function howManyMovies(array) {
   if (array.length === 0) {
     return;
   }
-  var dramaMovies = array.filter(function(object){
-    return object.genre.includes ("Drama");
+  var dramaMovies = array.filter(function (object) {
+    return object.genre.includes("Drama");
   });
-  var spielbergMovies = dramaMovies.filter(function(object){
+  var spielbergMovies = dramaMovies.filter(function (object) {
     return object.director === "Steven Spielberg";
   });
   if (spielbergMovies === 0) {
@@ -107,10 +107,10 @@ function howManyMovies(array) {
 
 function orderAlphabetically(array) {
   var arrayTitles = [];
-  array.forEach(function(object){
+  array.forEach(function (object) {
     arrayTitles.push(object.title);
   });
-  arrayTitles.splice(20,1000);
+  arrayTitles.splice(20, 1000);
   arrayTitles.sort();
   return arrayTitles;
 }
@@ -118,20 +118,26 @@ function orderAlphabetically(array) {
 // Best yearly rate average
 
 function bestYearAvg(array) {
-  var yearsObj = {}
-  array.forEach(function(object){
-
-    yearsObj.year = object.year;
+  if (array.length === 0) {
+    return;
+  }
+  if (array.length === 1) {
+    return `The best year was ${array[0].year} with an average rate of ${array[0].rate}`;
+  }
+  var byYears = [];
+  array.forEach(function (object) {
+    byYears.push({ year: object.year });
   });
-  yearsArr.forEach(object)
+  byYears.forEach(function (object) {
+    object.movies = array.filter(function (object2) {
+      return object2.year == object.year;
+    });
+  });
+  byYears.forEach(function (object) {
+    object.averageRate = ratesAverage(object.movies);
+  });
+  byYears.sort(function(obj1,obj2){
+    return obj1.averageRate - obj2.averageRate;
+  })
+  return `The best year was ${byYears[0].year} with an average rate of ${byYears[0].averageRate}`;
 }
-
-
-var newObject = Object.assign({}, object)
-
-
-
-//1. array de objetos con key year.
-//2. añadir key peliculas con array de objetos de ese año.
-//3. añadir key average rate que hace funcion ratesAverage de la array del punto 2.
-//4. devolver year de la más alta
