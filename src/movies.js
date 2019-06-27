@@ -1,6 +1,20 @@
 /* eslint no-restricted-globals: 'off' */
-// Turn duration of the movies from hours to minutes 
 
+
+// Turn duration of the movies from hours to minutes ---->> FAILED ['!!!!']
+function turnHoursToMinutes(arr) {
+  var cleanedAll;
+  arr.forEach(function(movie) {
+    var cleanedMins = movie.duration.replace('min', '');
+    arr.reduce(function() {
+      var cleanedHours = cleanedMins.replace(/([h])/, '*60 +');
+      cleanedAll = cleanedHours.replace(/(['])/, '')
+      console.log(cleanedHours);
+    },[]);
+    console.log(cleanedAll);
+    return cleanedAll;
+  });
+}
 
 // Get the average of all rates with 2 decimals 
 
@@ -48,18 +62,12 @@ function howManyMovies(arr) {
 
 
 // Order by title and print the first 20 titles
-/***WIP 
-function orderAlphabetically (array) {
-  var counter = 0
-  if(counter<20)array.;
-  counter++
-}*/
 
-function orderAlphabetically(arr) {
+function orderAlphabetically (arr) {
   arr.sort(function (a, b) {
-    if(a.title < b.title){
+    if (a.title < b.title) {
       return -1;
-    }else{
+    } else {
       return 1;
     }
   });
