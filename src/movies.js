@@ -1,5 +1,32 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+function turnHoursToMinutes(arr){
+  /*var duration = arr.map(function(obj){
+    return obj.duration.split(' ');
+    });
+    */ 
+  //erase(duration);
+
+  //arr[i].duration
+  for( var i =0; i < arr.length; i++){
+    var durationEachFilm = arr[i].duration.split(' ');
+    var result = erase(durationEachFilm).toString();
+    arr[i].duration = result;
+  }
+} 
+function erase(arr){
+  var newArr = arr.map(function(element){
+    if(element.includes('h')){
+      return element.split('h').reduce(function(acc,number){
+      return acc+number})*60 ;
+    } else if (element.includes('min')){
+      return parseInt(element.split('min').reduce(function(acc,number){
+        return acc+number}));
+    }
+  }); 
+  return newArr.reduce(function(acc,number){
+    return acc+number}) 
+}
 
 
 // Get the average of all rates with 2 decimals 
@@ -55,13 +82,14 @@ function howManyMovies(arr){
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(arr){
- var moviesTitle = arr.filter(function(obj){
+ var moviesTitle = arr.map(function(obj){
   return obj.title;
-  })
-  if (moviesTitle.length >20){
-    
+  });
+  var moviesSorted = moviesTitle.sort();
+  if (moviesSorted.length > 20){
+    moviesSorted.splice(20);
   }
-  return moviesTitle.sort()
+  return moviesSorted
 }
 
 
