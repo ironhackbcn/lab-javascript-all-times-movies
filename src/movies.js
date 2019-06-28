@@ -115,7 +115,7 @@ function orderAlphabetically(array) {
   return arrayTitles;
 }
 
-// Best yearly rate average
+// Best yearly rate average.
 
 function bestYearAvg(array) {
   if (array.length === 0) {
