@@ -27,21 +27,6 @@ function turnHoursToMinutes(array) {
   return newArray;
 }
 
-// Turn duration of the movies from hours to minutes ---->> FAILED ['!!!!']
-function turnHoursToMinutes(arr) {
-  var cleanedAll;
-  arr.forEach(function(movie) {
-    var cleanedMins = movie.duration.replace('min', '');
-    arr.reduce(function() {
-      var cleanedHours = cleanedMins.replace(/([h])/, '*60 +');
-      cleanedAll = cleanedHours.replace(/(['])/, '')
-      console.log(cleanedHours);
-    },[]);
-    console.log(cleanedAll);
-    return cleanedAll;
-  });
-}
-
 // Get the average of all rates with 2 decimals 
 
 function ratesAverage(arr) {
