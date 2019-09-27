@@ -20,6 +20,7 @@ function turnHoursToMinutes(array) {
   }
   return result;
 }
+// This is awful, there has to be a better way
 
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(array) {
@@ -32,6 +33,7 @@ function howManyMovies(array) {
     return undefined;
   }
 }
+//Check includes
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array) {
@@ -44,13 +46,16 @@ function orderAlphabetically(array) {
     return newArray;
   }
 }
+// Might be able to use index in the osrt instead of slice
 
 // Best yearly rate average
 
+
+
+
 // Get the average of all rates with 2 decimals
 function ratesAverage(array) {
-  let rates = array.map(a => a.rate);
-  let result = rates.reduce((accumulator, currentValue) => accumulator + currentValue);
+  let result = array.reduce((accumulator, currentValue) => accumulator + currentValue.rate, 0);
   return parseFloat((result / array.length).toFixed(2));
 }
 
@@ -71,6 +76,7 @@ function dramaMoviesRate(array) {
     return ratesAverage(dramas);
   }
 }
+
 // Order by time duration, in growing order
 function orderByDuration(array) {
   let newArray = array.map(function (element) {
@@ -90,3 +96,4 @@ function orderByDuration(array) {
     }
   });
 }
+// Check sorting here, it looks weird
