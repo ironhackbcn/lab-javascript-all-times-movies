@@ -1,68 +1,101 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+const hoursToMinutes = array => array[0]*60 + array[1]*1;
+      
+const turnHoursToMinutes = (array) => {
+  
+    let moviesCopie =JSON.parse(JSON.stringify(array))
+  
+    let moviesNumbers = moviesCopie.map(function(movie){
 
+        if(!movie.duration.includes("h")){
+            movie.duration = "0h " + movie.duration
+        } else if(!movie.duration.includes("min")){
+            movie.duration = movie.duration + " 00min"
+        } 
+
+        movie.duration = hoursToMinutes(movie.duration.match(/\d+/g))
+        return movie
+    })
+  
+    return moviesNumbers
+  }
+  
+ // console.log(turnHoursToMinutes(movies))
 
 // Get the average of all rates with 2 decimals 
-let ratesAverage = array => {
-    let arrAverage = array.reduce(function(total, movie){
-        return total + movie.rate;
-    },0)
+const ratesAverage = array => {
+
+    let arrAverage = array.reduce((total, movie)=> total + movie.rate,0);
+
     return parseFloat(arrAverage/array.length).toFixed(2)*1;
 }
 console.log(ratesAverage(movies))
 // Get the average of Drama Movies
-// A Jasmin no le gusta como esta, no pasa los dos últimos puntos del test aunque si que los cumple
+// JAsmine dice que no devuelve undefine si no hay ninguna Drama movie, pero si que lo hace, y ya no tengo más idea que probar para que le guste.
 
-let dramaMovies = array => {
-    let drama = array.filter(function(movie, index){
-      return movie.genre.includes("Drama")       
-  })
-    return drama;
-  } ;
+const dramaMovies = array => {
+    let drama = array.filter((movie, index)=> movie.genre.includes("Drama"))
+}
 
-let dramaMoviesRate = array => { 
-  
-    if(array.length === 0){
-      return undefined;
-    }
-    return ratesAverage(dramaMovies(array));   
-  }
-  console.log(dramaMoviesRate(movies))
+const dramaMoviesRate = array => array.length > 0 ? ratesAverage(dramaMovies(array)): undefined;   
+
+ // console.log(dramaMoviesRate(movies))
 
 
 // Order by time duration, in growing order
-//NO ACABADO NI DE COÑA
-/*let orderByDuration = array => {
-    let descendingTimeOrdered = array.sort(function(a, movie){
-        return total + movie.rate;
-    },0)
-}*/
+const orderByDuration = array => {
+
+    let alphabetical = array.sort(function(a,b){
+      if(a.title > b.title){
+        return 1
+      } else if(a.title < b.title){
+        return -1
+      } else {return 0}
+      
+    })
+  
+    let aux = (turnHoursToMinutes(alphabetical)).sort(function(a,b){
+     return a.duration - b.duration
+    })
+  
+    return aux;
+  }
+  
+  console.log(orderByDuration(movies))
 
 // How many movies did STEVEN SPIELBERG
-
-//Como no hemos hecho la funcion 4 con maps o filters ahora tenemos que repetir el tema del 4
+//a Jasmine no le gusta, pero hace lo que ella pide. Porque? Como puedo identificar dentro de Jasmine como quiere que lo haga?
 
 const directorFilms = (array, name) => {
-    let aux = array.filter(function(dir){
-          return dir.director === name;
-    })
+    let aux = array.filter(dir => dir.director === name);
+  
     return aux
   }
   
 // console.log(directorFilms(movies, 'Steven Spielberg'))
 
-const howManyMovies = array => {
+const howManyMovies = (array, directorName) => {
 
     if(array.length === 0){
       return undefined;
     } 
-            
-    return array.length.toString();
+    return `${directorName} directed ${dramaMovies(directorFilms(array, directorName)).length} drama movies!`           
   }
   
-  console.log(howManyMovies(directorFilms(movies, 'Steven Spielberg')))
+//console.log(howManyMovies(directorFilms(movies, 'Steven Spielberg')))
 
 // Order by title and print the first 20 titles
 
+const orderAlphabetically = (array) => {
 
+    let arrayCopie =JSON.parse(JSON.stringify(array));
+    
+    let justTitle = arrayCopie.map(movie => movie.title);
+    
+    let sortedArray = justTitle.sort()
+    
+    return sortedArray.slice(0,20)
+}
+//console.log(orderAlphabetically(movies))
 // Best yearly rate average
