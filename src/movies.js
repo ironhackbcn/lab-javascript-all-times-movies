@@ -11,70 +11,57 @@ let ratesAverage = array => {
 }
 console.log(ratesAverage(movies))
 // Get the average of Drama Movies
+// A Jasmin no le gusta como esta, no pasa los dos últimos puntos del test aunque si que los cumple
 
-let dramaMoviesRate = array => {
-    
-    let dramaRate = []
+let dramaMovies = array => {
+    let drama = array.filter(function(movie, index){
+      return movie.genre.includes("Drama")       
+  })
+    return drama;
+  } ;
 
-    for(let i=0; i<array.length; i++){
-        for (let j = 0; j<array.length; j++)
-            if(array[i].genre[j] === "Drama"){ 
-                dramaRate.push(array[i].rate);      
-            }         
-        }
-    
-    if(dramaRate.length === 0){
-        return undefined;
+let dramaMoviesRate = array => { 
+  
+    if(array.length === 0){
+      return undefined;
     }
+    return ratesAverage(dramaMovies(array));   
+  }
+  console.log(dramaMoviesRate(movies))
 
-   let averageDrama =  dramaRate.reduce(function (total, currentValue){
-        return total + currentValue },0)
-    
-    return parseFloat(averageDrama/dramaRate.length).toFixed(2)*1
-    
-}
-console.log(dramaMoviesRate(movies))
+
 // Order by time duration, in growing order
 //NO ACABADO NI DE COÑA
-let orderByDuration = array => {
+/*let orderByDuration = array => {
     let descendingTimeOrdered = array.sort(function(a, movie){
         return total + movie.rate;
     },0)
-}
+}*/
 
 // How many movies did STEVEN SPIELBERG
 
 //Como no hemos hecho la funcion 4 con maps o filters ahora tenemos que repetir el tema del 4
 
-let howManyMovies = array =>{
-    
-    let stevenFilms = array.filter(function(dir){
-        return dir.director === "Steven Spielberg"
+const directorFilms = (array, name) => {
+    let aux = array.filter(function(dir){
+          return dir.director === name;
     })
+    return aux
+  }
+  
+// console.log(directorFilms(movies, 'Steven Spielberg'))
 
-    if(stevenFilms.length === 0){
-        return undefined;
+const howManyMovies = array => {
+
+    if(array.length === 0){
+      return undefined;
     } 
+            
+    return array.length.toString();
+  }
+  
+  console.log(howManyMovies(directorFilms(movies, 'Steven Spielberg')))
 
-    let stevenDrama = [];
-
-    for(let i = 0; i< stevenFilms.length ; i++){
-        for(let j = 0 ; j < stevenFilms.length; j++){
-            if(stevenFilms[i].genre[j] != "Drama"){
-                stevenDrama.push(array[i])
-            }
-        }
-    }
-
-    if(stevenDrama.length === 0){
-        return `Steven Spielberg directed 0 drama movies!`
-    } else {
-        return `Steven Spielberg directed ${stevenDrama.length}`
-    }
-    
-    return stevenFilms.length.toString();
-}
-console.log(howManyMovies(movies))
 // Order by title and print the first 20 titles
 
 
