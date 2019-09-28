@@ -72,12 +72,6 @@ function orderAlphabetically(array) {
     return newArray;
   }
 }
-// Might be able to use index in the sort instead of slice
-
-// Best yearly rate average
-
-
-
 
 // Get the average of all rates with 2 decimals
 function ratesAverage(array) {
@@ -123,3 +117,52 @@ function orderByDuration(array) {
   });
 }
 // Check sorting here, it looks weird
+
+// Best yearly rate average
+function bestYearAvg(array) {
+  if (array.length == 0) {
+    return undefined;
+  } else {
+    // Get a new array with only years
+    let yearlyRates = [];
+
+    // How is this working??
+    const map = new Map();
+    for (const item of movies) {
+      if (!map.has(item.year)) {
+        map.set(item.year, true);    // set any value to Map
+        yearlyRates.push({
+          year: parseInt(item.year),
+          rates: [],
+          avgRate: 0
+        });
+      }
+    }
+
+    // Iterate through the movies array and add all rates to the corresponding slot in the yearlyRates array
+    for (let i = 0; i < yearlyRates.length; i++) {
+      for (let j = 0; j < movies.length; j++) {
+        if (yearlyRates[i].year == movies[j].year) {
+          yearlyRates[i].rates.push(movies[j].rate);
+        }
+      }
+    }
+
+    // Iterate through the yearlyRates array and calculate the rate average
+    let avgRate = 0;
+    for (let i = 0; i < yearlyRates.length; i++) {
+      avgRate = yearlyRates[i].rates.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+      yearlyRates[i].avgRate = parseFloat((avgRate / yearlyRates[i].rates.length).toFixed(2));
+    }
+
+    yearlyRates = yearlyRates.sort(function (a, b) {
+      if (a.avgRate > b.avgRate) return -1;
+      if (a.avgRate < b.avgRate) return 1;
+      if (a.year > b.year) return 1;
+      if (a.year < b.year) return -1;
+    });
+
+    console.log(yearlyRates);
+    return `The best year was ${yearlyRates[0].year} with an average rate of ${yearlyRates[0].avgRate}`;
+  }
+}
