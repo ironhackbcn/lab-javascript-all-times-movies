@@ -22,6 +22,33 @@ function turnHoursToMinutes(array) {
 }
 // This is awful, there has to be a better way
 
+/* Why doesn't this work?
+
+// Turn duration of the movies from hours to minutes
+function turnHoursToMinutes(array) {
+  let duration, hours, minutes;
+  let timeArray = [];
+  let movies = array.map(function (movie) {
+    if (movie.duration.indexOf("min") < 0) {
+      hours = parseInt((movie.duration).replace(/h/ig, ''));
+      minutes = 0;
+    } else if (movie.duration.indexOf("h") < 0) {
+      hours = 0;
+      minutes = parseInt(movie.duration.replace(/min/ig, ''));
+    } else {
+      timeArray = movie.duration.replace(/min/ig, '').replace(/h/ig, '').split(' ');
+      hours = parseInt(timeArray[0]);
+      minutes = parseInt(timeArray[1]);
+    }
+    duration = (hours * 60) + minutes;
+    movie.duration = duration;
+    //console.log(movie);
+  });
+  return movies;
+}
+
+*/
+
 // How many movies did STEVEN SPIELBERG
 function howManyMovies(array) {
   if (array.length > 0) {
@@ -33,7 +60,6 @@ function howManyMovies(array) {
     return undefined;
   }
 }
-//Check includes
 
 // Order by title and print the first 20 titles
 function orderAlphabetically(array) {
@@ -46,7 +72,7 @@ function orderAlphabetically(array) {
     return newArray;
   }
 }
-// Might be able to use index in the osrt instead of slice
+// Might be able to use index in the sort instead of slice
 
 // Best yearly rate average
 
