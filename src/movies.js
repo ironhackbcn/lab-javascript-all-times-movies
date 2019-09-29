@@ -1,116 +1,85 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
-/*function turnHoursToMinutes(array){
-    let minutes:0;
-    let hours:0;
-
-    let filtrarHores= array.map(function(movie){
-        if(movie.duration.includes("h"){
-            return *(60);
-        })
-        
-
-    })
-}
-
-const newMovies= movies.map(function(movie,index){
-    if(movie.year>2000){
-        movie.isNew=true (afegim la key is new amb el punt)
-    }
-return movie; (si nomes retornem newmovies ens tornaria nomes istrue istreu is true)
-})*/
 // Get the average of all rates with 2 decimals 
-
 function ratesAverage(array){
-    let sumaMovies= array.reduce(function(accumulator,currentValue){
-        return accumulator+currentValue.rate
+    let sumaRates= array.reduce(function(acumulador,currentvalue){
+      return acumulador+currentvalue.rate;
     },0)
-    return parseFloat(sumaMovies/array.length).toFixed(2)*1;
-}
-
+    return parseFloat(sumaRates/array.length).toFixed(2)*1;
+    }
+  
+  console.log(ratesAverage(movies));
 // Get the average of Drama Movies
-function dramaMoviesRate(array){
-    let dramaOnly = array.filter(function(movie){
 
-        if(movie.genre.includes("Drama")){        
-            return movie.rate;}   
-        else{
-            return undefined;
+function onlyDramas(array){
+    let justDramas=array.filter(function(movie){
+        if(movie.genre.includes("Drama")){
+            return movie
         }
-        
     })
-    return ratesAverage(dramaOnly);
+    return justDramas;
+ }
+ console.log(onlyDramas(movies));
 
-}
-console.log(dramaMoviesRate(movies));
+ function dramaMoviesRate(array){
+     if(array.length>0){
+        return ratesAverage(onlyDramas(array));
+     }
+     else{
+         return undefined;
+     }
+ }
 
 // Order by time duration, in growing order
 
 
 
 // How many movies did STEVEN SPIELBERG
-
-function dramaOnly (array) {
-    let dramas = array.filter(function(movie){
-     if(movie.genre.includes("Drama")){        
-        return movie.title}
+function whoDirected(array,name){
+    let directedBy= array.filter(function(director){
+      return director.director===name;
     })
-    return dramas;
-}
-console.log(dramaOnly(movies));
+    return directedBy;
+  }
+  console.log(whoDirected(movies, "Steven Spielberg"));
 
-//printea todo el objeto aunque le pido que sólo el título
- /*if(dramaOnly(array)=== true &&& movie.director ==="Steven Spielberg"){
-    return movie;*/
-
-function howManyMovies(array){
-    if(array.length > 0){
-        let dramaSteven= dramaOnly(array).filter(function(movie){
-            return movie.director === "Steven Spielberg"
-            
-        });
-        return `Steven Spielberg directed ${dramaSteven.length} drama movies!!!`;
-
-
-    }
-    else  {
+  function howManyMovies(array,name){
+    if(array.length === 0){
         return undefined
-    }
+    } 
+        return `${name} directed ${onlyDramas(whoDirected(array,name)).length} drama movies!`;
     
-  
-  }    
-  
-  console.log(howManyMovies(movies));
+}
 
-
+console.log(howManyMovies(whoDirected(movies, "Steven Spielberg")));
 
 // Order by title and print the first 20 titles
-/*intención: crear un nuevo array vacio, 
-recorrer el array y que push todos los titulos del array al nuevoarray.
-si la longitud del nuevo array es menor q 20 me crea una copia de las primeras 20
-sino retorna novaArray.
-ahora vamos a comparar alfabeticamente el nuevo array*/
 
-function orderAlphabetically(array){ 
-    let novaArray=[];
-    for(let i=0; i<array.length; i++){
-        return novaArray.push(array[i].title); // en aquest loop hi ha algu q no funciona
-        if(novaArray.length<=20){
-            return novaArray.slice(0, 20);
+const nomesTitols= movies.map(function(movie){
+    return movie.title;})
+ 
+ console.log(nomesTitols);
+console.log("===============");
 
-        }
-    }
+console.log("===============");
+const nomesVint= nomesTitols.slice(0,20);
+console.log(nomesVint);
+console.log("===============");
 
-    let sortedMovies=novaArray.sort(function(movie1,movie2){
-        return movie1.title < movie2.title;})
+ function orderAlphabetically(array){ 
+    let sortedMovies=nomesVint.sort(function(a,b){
+     if (a<b){
+       return -1;
+     } if (a>b){
+       return 1;
+     }
+      return 0;
     
+    })
     return sortedMovies;
    
    }
    console.log(orderAlphabetically(movies));
-   
-
-
 
 
 
