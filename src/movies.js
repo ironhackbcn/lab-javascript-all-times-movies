@@ -1,5 +1,28 @@
 /* eslint no-restricted-globals: 'off' */
 // Turn duration of the movies from hours to minutes 
+
+//COPIADO DE INES!!!
+const hoursToMinutes = array => array[0]*60 + array[1]*1;
+      
+const turnHoursToMinutes = (array) => {
+  
+    let moviesCopie =JSON.parse(JSON.stringify(array))
+  
+    let moviesNumbers = moviesCopie.map(function(movie){
+
+        if(!movie.duration.includes("h")){
+            movie.duration = "0h " + movie.duration
+        } else if(!movie.duration.includes("min")){
+            movie.duration = movie.duration + " 00min"
+        } 
+
+        movie.duration = hoursToMinutes(movie.duration.match(/\d+/g))
+        return movie
+    })
+  
+    return moviesNumbers
+  }
+
 // Get the average of all rates with 2 decimals 
 function ratesAverage(array){
     let sumaRates= array.reduce(function(acumulador,currentvalue){
@@ -11,43 +34,48 @@ function ratesAverage(array){
   console.log(ratesAverage(movies));
 // Get the average of Drama Movies
 
+
 function onlyDramas(array){
     let justDramas=array.filter(function(movie){
-        if(movie.genre.includes("Drama")){
-            return movie
-        }
-    })
+            return movie.genre.includes("Drama")})
     return justDramas;
  }
  console.log(onlyDramas(movies));
 
  function dramaMoviesRate(array){
-     if(array.length>0){
-        return ratesAverage(onlyDramas(array));
+     if(array.length === 0){
+        return undefined;
      }
      else{
-         return undefined;
+        return ratesAverage(onlyDramas(array));
      }
  }
 
 // Order by time duration, in growing order
 
+function orderByDuration(array){
+    array.sort(function(a,b){
+        if(a.duration === b.duration){
+            if(a.title>b.title){
+                return 1;
+            } else{
+                return -1;
+            }
+        } return a.duration - b.duration;
+    });
+    return array;
+}
 
 
 // How many movies did STEVEN SPIELBERG
-function whoDirected(array,name){
-    let directedBy= array.filter(function(director){
-      return director.director===name;
-    })
-    return directedBy;
-  }
-  console.log(whoDirected(movies, "Steven Spielberg"));
-
   function howManyMovies(array,name){
-    if(array.length === 0){
-        return undefined
-    } 
-        return `${name} directed ${onlyDramas(whoDirected(array,name)).length} drama movies!`;
+    if(array.length > 0){
+    let dramas = onlyDramas(array).filter(function(movie){
+        return movie.director === "Steven Spielberg"
+    });
+    return `Steven Spielberg directed ${dramas.length} drama movies!`;
+        } 
+        return undefined;
     
 }
 
@@ -67,19 +95,16 @@ console.log(nomesVint);
 console.log("===============");
 
  function orderAlphabetically(array){ 
-    let sortedMovies=nomesVint.sort(function(a,b){
-     if (a<b){
-       return -1;
-     } if (a>b){
-       return 1;
-     }
-      return 0;
-    
-    })
-    return sortedMovies;
-   
-   }
-   console.log(orderAlphabetically(movies));
+    let titles = array.map(movie => movie.title);
+
+    let order = titles.sort();
+  
+    if (order.length > 20){
+      return order.splice(0,20)
+    } else {
+      return order;
+    }
+  }
 
 
 
