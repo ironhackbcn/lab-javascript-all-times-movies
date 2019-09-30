@@ -34,11 +34,13 @@ console.log(ratesAverage(movies))
 // Get the average of Drama Movies
 // JAsmine dice que no devuelve undefine si no hay ninguna Drama movie, pero si que lo hace, y ya no tengo más idea que probar para que le guste.
 
-const dramaMovies = array => {
-    let drama = array.filter((movie, index)=> movie.genre.includes("Drama"))
-}
 
-const dramaMoviesRate = array => array.length > 0 ? ratesAverage(dramaMovies(array)): undefined;   
+const dramaMovies = array => {
+  let drama = array.filter(movie=> movie.genre.includes("Drama"))
+
+  return drama
+}
+const dramaMoviesRate = array => array.length > 0 ? ratesAverage(dramaMovies(array)) : undefined;
 
  // console.log(dramaMoviesRate(movies))
 
@@ -46,21 +48,23 @@ const dramaMoviesRate = array => array.length > 0 ? ratesAverage(dramaMovies(arr
 // Order by time duration, in growing order
 const orderByDuration = array => {
 
-    let alphabetical = array.sort(function(a,b){
-      if(a.title > b.title){
-        return 1
-      } else if(a.title < b.title){
-        return -1
-      } else {return 0}
-      
-    })
-  
-    let aux = (turnHoursToMinutes(alphabetical)).sort(function(a,b){
-     return a.duration - b.duration
-    })
-  
-    return aux;
-  }
+  let alphabetical = array.sort(function(a,b){
+    if(a.title > b.title){
+      return 1
+    } else if(a.title < b.title){
+      return -1
+    } else {return 0}
+    
+  })   
+
+  let aux = (turnHoursToMinutes(alphabetical)).sort(function(a,b){
+   return a.duration - b.duration
+  })
+
+  let aux2 = aux.map(movie => movie.title);
+
+  return aux2;
+}
   
   console.log(orderByDuration(movies))
 
@@ -80,7 +84,7 @@ const howManyMovies = (array, directorName) => {
     if(array.length === 0){
       return undefined;
     } 
-    return `${directorName} directed ${dramaMovies(directorFilms(array, directorName)).length} drama movies!`           
+    return `${directorName} directed ${dramaMovies(directorFilms(array, directorName)).length} drama movies!`          
   }
   
 //console.log(howManyMovies(directorFilms(movies, 'Steven Spielberg')))
