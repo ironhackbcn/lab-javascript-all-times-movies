@@ -128,9 +128,9 @@ function bestYearAvg(array) {
 
     // How is this working??
     const map = new Map();
-    for (const item of movies) {
+    for (const item of array) {
       if (!map.has(item.year)) {
-        map.set(item.year, true);    // set any value to Map
+        map.set(item.year, true);
         yearlyRates.push({
           year: parseInt(item.year),
           rates: [],
@@ -141,9 +141,9 @@ function bestYearAvg(array) {
 
     // Iterate through the movies array and add all rates to the corresponding slot in the yearlyRates array
     for (let i = 0; i < yearlyRates.length; i++) {
-      for (let j = 0; j < movies.length; j++) {
-        if (yearlyRates[i].year == movies[j].year) {
-          yearlyRates[i].rates.push(movies[j].rate);
+      for (let j = 0; j < array.length; j++) {
+        if (yearlyRates[i].year == array[j].year) {
+          yearlyRates[i].rates.push(array[j].rate);
         }
       }
     }
