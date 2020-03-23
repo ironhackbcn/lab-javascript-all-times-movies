@@ -67,7 +67,7 @@ var movies = [
     title: 'Il buono, il brutto, il cattivo',
     year: '1966',
     director: 'Sergio Leone',
-    duration: '3h 2min',
+    duration: '3h',
     genre: ['Western'],
     rate: 8.9
   },
@@ -523,7 +523,7 @@ var movies = [
     title: 'Oldeuboi',
     year: '2003',
     director: 'Chan-wook Park',
-    duration: '2h',
+    duration: '2h 00min',
     genre: ['Action', 'Drama', 'Mystery', 'Thriller'],
     rate: 8.4
   },
@@ -1499,7 +1499,7 @@ var movies = [
     title: 'Platoon',
     year: '1986',
     director: 'Oliver Stone',
-    duration: '2h',
+    duration: '2h 00min',
     genre: ['Drama', 'War'],
     rate: 8.1
   },
@@ -1603,7 +1603,7 @@ var movies = [
     title: 'Mad Max: Fury Road',
     year: '2015',
     director: 'George Miller',
-    duration: '2h',
+    duration: '2h 00min',
     genre: ['Action', 'Adventure', 'Sci-Fi', 'Thriller'],
     rate: 8.1
   },
